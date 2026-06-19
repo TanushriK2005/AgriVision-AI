@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriVision AI - Smart Agriculture Advisor</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="app-container">
+        
+        <!-- Mobile Header Bar -->
+        <header class="mobile-header">
+            <div class="mobile-brand">
+                <i data-lucide="sprout" class="brand-icon"></i>
+                <span>AgriVision AI</span>
+            </div>
+            <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle Navigation">
+                <i data-lucide="menu"></i>
+            </button>
+        </header>
+
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-brand">
+                <div class="brand-logo">
+                    <i data-lucide="sprout"></i>
+                </div>
+                <div class="brand-details">
+                    <h2>AgriVision AI</h2>
+                    <p>Smart Agro Advisor</p>
+                </div>
+            </div>
+
+            <nav class="sidebar-menu">
+                <ul>
+                    <li>
+                        <a href="#dashboard" class="menu-item active" data-tab="dashboard">
+                            <i data-lucide="layout-dashboard"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#yield" class="menu-item" data-tab="yield">
+                            <i data-lucide="trending-up"></i>
+                            <span>Yield Prediction</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#disease" class="menu-item" data-tab="disease">
+                            <i data-lucide="shield-alert"></i>
+                            <span>Disease Detection</span>
+                        </a>
+                    </li>
+                    
+                   
+                    <li>
+    <a href="#crop" class="menu-item" data-tab="crop">
+        <i data-lucide="leaf"></i>
+        <span>Crop Recommendation</span>
+    </a>
+</li>
+                   <li>
+    <a href="#fertilizer" class="menu-item" data-tab="fertilizer">
+
+        <i data-lucide="test-tube"></i>
+        <span>Fertilizer Advisor</span>
+
+    </a>
+</li>
+                    <li>
+    <a href="#market" class="menu-item" data-tab="market">
+
+        <i data-lucide="chart-column"></i>
+        <span>Market Prices</span>
+
+    </a>
+</li>
+                    <li>
+                        <a href="#chatbot" class="menu-item" data-tab="chatbot">
+                        
+                            <i data-lucide="message-square"></i>
+                            <span>Farmer Chatbot</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- Sidebar Footer / Status -->
+            <div class="sidebar-status">
+                <div class="status-indicator">
+                    <span class="status-dot offline" id="api-status-dot"></span>
+                    <span class="status-text" id="api-status-text">Checking Backend API...</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Overlay for mobile sidebar closing -->
+        <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            
+            <!-- Top Bar -->
+            <header class="topbar">
+                <div class="topbar-welcome">
+                    <h1 id="topbar-title">Overview Dashboard</h1>
+                    <p id="topbar-date">Monday, June 1, 2026</p>
+                </div>
+                <div class="topbar-actions">
+                    <div class="connection-pill offline" id="connection-pill">
+                        <i data-lucide="server"></i>
+                        <span id="connection-pill-text">API Offline</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Content Screens -->
+            <div class="content-body">
+
+                <!-- SCREEN: DASHBOARD -->
+                <section class="tab-content active" id="dashboard-tab">
+                    
+                    <!-- Hero Section -->
+                    <div class="hero-card">
+                        <div class="hero-text">
+                            <h2>Advancing Agriculture through Intelligence</h2>
+                            <p>AgriVision AI combines Machine Learning and Computer Vision to assist farmers and agronomists. Maximize your crop yield outputs and run instant diagnostic scans to detect plant leaf diseases with treatment solutions.</p>
+                            <div class="hero-actions">
+                                <button class="btn btn-primary" onclick="switchTab('yield')">
+                                    <i data-lucide="trending-up"></i> Predict Crop Yield
+                                </button>
+                                <button class="btn btn-secondary" onclick="switchTab('disease')">
+                                    <i data-lucide="camera"></i> Diagnose Leaf Disease
+                                </button>
+                            </div>
+                        </div>
+                        <div class="hero-graphic">
+                            <div class="leaf-circle">
+                                <i data-lucide="sprout"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Statistics Cards -->
+                    <div class="stats-grid">
+                        <div class="stat-card glass-card">
+                            <div class="stat-icon yield-icon">
+                                <i data-lucide="trending-up"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Yield Model</h3>
+                                <p class="stat-value">Random Forest</p>
+                                <p class="stat-subtext">Optimized Regressor</p>
+                            </div>
+                        </div>
+                        <div class="stat-card glass-card">
+                            <div class="stat-icon disease-icon">
+                                <i data-lucide="scan-eye"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Disease Model</h3>
+                                <p class="stat-value">MobileNetV2</p>
+                                <p class="stat-subtext">Convolutional Neural Net</p>
+                            </div>
+                        </div>
+                        <div class="stat-card glass-card">
+                            <div class="stat-icon coverage-icon">
+                                <i data-lucide="globe"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Data Coverage</h3>
+                                <p class="stat-value">Global</p>
+                                <p class="stat-subtext">101 Trained Countries</p>
+                            </div>
+                        </div>
+                        <div class="stat-card glass-card">
+                            <div class="stat-icon classes-icon">
+                                <i data-lucide="leaf"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Plant Classes</h3>
+                                <p class="stat-value">15 Diagnostic Categories</p>
+                                <p class="stat-subtext">Pepper, Potato, Tomato</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- About / Info Section -->
+                    <div class="info-grid">
+                        <div class="info-card glass-card">
+                            <h3><i data-lucide="cpu"></i> Yield Prediction Algorithm</h3>
+                            <p>Our crop yield engine evaluates historical agricultural yields using a Random Forest regression model. By feeding local region parameters, crop varieties, pesticide tonnage, and temperature, the system helps model farming productivity.</p>
+                            <ul class="feature-bullets">
+                                <li><i data-lucide="check"></i> Region-based adjustments</li>
+                                <li><i data-lucide="check"></i> Multi-crop support</li>
+                                <li><i data-lucide="check"></i> Meteorological correlations</li>
+                            </ul>
+                        </div>
+                        <div class="info-card glass-card">
+                            <h3><i data-lucide="camera"></i> Computer Vision Diagnostics</h3>
+                            <p>Utilizing high-performance deep transfer learning, the disease detector classifies leaf anomalies from crop leaf images. Grounded in MobileNetV2 architecture, scans detect early blights, late blights, bacterial spots, and molds.</p>
+                            <ul class="feature-bullets">
+                                <li><i data-lucide="check"></i> Instant leaf analysis</li>
+                                <li><i data-lucide="check"></i> Confidence score calculation</li>
+                                <li><i data-lucide="check"></i> Immediate treatment remedies</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SCREEN: YIELD PREDICTION -->
+                <section class="tab-content" id="yield-tab">
+                    <div class="page-layout-grid">
+                        
+                        <!-- Yield Form Card -->
+                        <div class="glass-card form-container">
+                            <div class="card-header">
+                                <i data-lucide="pencil-line" class="header-icon"></i>
+                                <div>
+                                    <h2>Yield Parameters</h2>
+                                    <p>Provide region, crop, and environment metrics</p>
+                                </div>
+                            </div>
+
+                            <form id="yield-form" onsubmit="handleYieldSubmit(event)">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="area"><i data-lucide="map-pin"></i> Country (Area)</label>
+                                        <input type="text" id="area" placeholder="e.g. India, United States, Albania" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="item"><i data-lucide="leaf"></i> Crop (Item)</label>
+                                        <input type="text" id="item" placeholder="e.g. Potatoes, Wheat, Maize" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="year"><i data-lucide="calendar"></i> Year</label>
+                                        <input type="number" id="year" placeholder="e.g. 2026" min="1950" max="2100" requiredValue="2026" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="rainfall"><i data-lucide="cloud-rain"></i> Rainfall (mm/year)</label>
+                                        <input type="number" step="any" id="rainfall" placeholder="e.g. 1000" min="0" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="pesticides"><i data-lucide="flask"></i> Pesticides (tonnes)</label>
+                                        <input type="number" step="any" id="pesticides" placeholder="e.g. 50" min="0" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="temperature"><i data-lucide="thermometer"></i> Avg Temperature (°C)</label>
+                                        <input type="number" step="any" id="temperature" placeholder="e.g. 24.5" required>
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary btn-block" id="yield-submit-btn">
+                                    <span>Predict Yield</span>
+                                    <i data-lucide="trending-up"></i>
+                                </button>
+                            </form>
+                        </div>
+
+                        <!-- Yield Results Card -->
+                        <div class="glass-card result-container" id="yield-result-container">
+                            <div class="empty-state" id="yield-empty-state">
+                                <div class="empty-icon">
+                                    <i data-lucide="bar-chart-3"></i>
+                                </div>
+                                <h3>No Prediction Yet</h3>
+                                <p>Fill out the parameters form on the left and click "Predict Yield" to run the regression model.</p>
+                            </div>
+
+                            <div class="loading-state hidden" id="yield-loading-state">
+                                <div class="spinner"></div>
+                                <p>Running Random Forest Regressor...</p>
+                            </div>
+
+                            <div class="result-display hidden" id="yield-result-display">
+                                <div class="result-badge success">
+                                    <i data-lucide="check-circle-2"></i> Prediction Succeeded
+                                </div>
+                                <h3 class="result-title">Predicted Crop Yield</h3>
+                                
+                                <div class="yield-value-box">
+                                    <span class="value" id="yield-val-hg-ha">0</span>
+                                    <span class="unit">hg/ha</span>
+                                </div>
+
+                                <div class="yield-conversions">
+                                    <div class="conversion-item">
+                                        <span class="conv-label">Tonnes / Hectare</span>
+                                        <span class="conv-value" id="yield-val-tonnes-ha">0.00</span>
+                                    </div>
+                                    <div class="conversion-item">
+                                        <span class="conv-label">Kilograms / Hectare</span>
+                                        <span class="conv-value" id="yield-val-kg-ha">0.00</span>
+                                    </div>
+                                </div>
+
+                                <div class="input-summary-card">
+                                    <h4>Input Summary</h4>
+                                    <div class="summary-grid">
+                                        <div><strong>Country:</strong> <span id="summary-area">-</span></div>
+                                        <div><strong>Crop:</strong> <span id="summary-item">-</span></div>
+                                        <div><strong>Year:</strong> <span id="summary-year">-</span></div>
+                                        <div><strong>Rainfall:</strong> <span id="summary-rainfall">-</span> mm</div>
+                                        <div><strong>Pesticides:</strong> <span id="summary-pesticides">-</span> t</div>
+                                        <div><strong>Temp:</strong> <span id="summary-temp">-</span> °C</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- SCREEN: DISEASE DETECTION -->
+                <section class="tab-content" id="disease-tab">
+                    <div class="page-layout-grid">
+                        
+                        <!-- Upload Card -->
+                        <div class="glass-card form-container">
+                            <div class="card-header">
+                                <i data-lucide="scan" class="header-icon"></i>
+                                <div>
+                                    <h2>Leaf Scanner</h2>
+                                    <p>Upload a clear crop leaf photo for diagnostics</p>
+                                </div>
+                            </div>
+
+                            <div class="upload-zone" id="upload-zone">
+                                <input type="file" id="leafImage" accept="image/*" class="hidden-input" onchange="handleImageSelect(event)">
+                                <div class="upload-prompt" id="upload-prompt">
+                                    <i data-lucide="upload-cloud" class="upload-icon"></i>
+                                    <p class="main-prompt">Drag & drop leaf photo here, or <span>browse</span></p>
+                                    <p class="sub-prompt">Supports PNG, JPG, JPEG. Ensure leaf is centered and well lit.</p>
+                                </div>
+                                <div class="preview-wrapper hidden" id="preview-wrapper">
+                                    <img id="preview" src="" alt="Crop leaf preview">
+                                    <div class="scan-laser" id="scan-laser"></div>
+                                    <button class="remove-btn" onclick="clearLeafImage(event)" aria-label="Remove Image">
+                                        <i data-lucide="x"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <button class="btn btn-primary btn-block mt-4" id="disease-submit-btn" onclick="runDiseaseDetection()">
+                                <span>Diagnose Disease</span>
+                                <i data-lucide="shield-alert"></i>
+                            </button>
+                        </div>
+
+                        <!-- Diagnosis Report Card -->
+                        <div class="glass-card result-container" id="disease-result-container">
+                            <div class="empty-state" id="disease-empty-state">
+                                <div class="empty-icon">
+                                    <i data-lucide="activity"></i>
+                                </div>
+                                <h3>Ready for Diagnostic Scan</h3>
+                                <p>Select or drag a crop leaf image, then press "Diagnose Disease" to analyze leaf pathology.</p>
+                            </div>
+
+                            <div class="loading-state hidden" id="disease-loading-state">
+                                <div class="spinner"></div>
+                                <p>Scanning leaf features via MobileNetV2 CNN...</p>
+                            </div>
+
+                            <div class="result-display hidden" id="disease-result-display">
+                                <div class="result-badge alert" id="disease-status-badge">
+                                    <i data-lucide="alert-triangle"></i> Leaf Condition Detected
+                                </div>
+                                
+                                <h3 class="result-sub">Analysis Results</h3>
+                                <h2 class="disease-title" id="disease-detected-name">Tomato Late Blight</h2>
+                                
+                                <div class="confidence-section">
+                                    <div class="confidence-header">
+                                        <span>Scan Confidence</span>
+                                        <span id="confidence-percentage">94.20%</span>
+                                    </div>
+                                    <div class="progress-bar-bg">
+                                        <div class="progress-bar-fill" id="confidence-bar-fill"></div>
+                                    </div>
+                                </div>
+
+                                <div class="treatment-card" id="treatment-card">
+                                    <div class="treatment-header">
+                                        <i data-lucide="clipboard-list"></i>
+                                        <h4>Recommended Treatments</h4>
+                                    </div>
+                                    <p id="treatment-recommendation">Apply Mancozeb fungicide and remove infected leaves immediately to prevent further spread.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+<!-- SCREEN: CROP RECOMMENDATION -->
+<section class="tab-content" id="crop-tab">
+
+    <div class="page-layout-grid">
+
+        <div class="glass-card form-container">
+
+            <div class="card-header">
+                <i data-lucide="leaf" class="header-icon"></i>
+
+                <div>
+                    <h2>Crop Recommendation</h2>
+                    <p>Enter soil and weather parameters</p>
+                </div>
+
+            </div>
+
+            <form id="crop-form">
+
+                <div class="form-row">
+
+                    <div class="form-group">
+                        <label>Nitrogen (N)</label>
+                        <input type="number" id="cropN" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Phosphorus (P)</label>
+                        <input type="number" id="cropP" required>
+                    </div>
+
+                </div>
+
+                <div class="form-row">
+
+                    <div class="form-group">
+                        <label>Potassium (K)</label>
+                        <input type="number" id="cropK" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Temperature (°C)</label>
+                        <input type="number" step="0.1" id="cropTemp" required>
+                    </div>
+
+                </div>
+
+                <div class="form-row">
+
+                    <div class="form-group">
+                        <label>Humidity (%)</label>
+                        <input type="number" step="0.1" id="cropHumidity" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>pH</label>
+                        <input type="number" step="0.1" id="cropPh" required>
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <label>Rainfall (mm)</label>
+                    <input type="number" step="0.1" id="cropRainfall" required>
+                </div>
+
+                <button
+                    type="button"
+                    class="btn btn-primary btn-block"
+                    onclick="recommendCrop()">
+
+                    Recommend Crop
+
+                </button>
+
+            </form>
+
+        </div>
+
+        <div class="glass-card result-container">
+
+            <div class="result-display">
+
+                <h3>Recommended Crop</h3>
+
+                <div
+                    id="cropResult"
+                    style="
+                        font-size:32px;
+                        font-weight:bold;
+                        color:#16a34a;
+                        margin-top:20px;
+                    ">
+                    --
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- SCREEN: FERTILIZER ADVISOR -->
+<section class="tab-content" id="fertilizer-tab">
+
+    <div class="page-layout-grid">
+
+        <div class="glass-card form-container">
+
+            <div class="card-header">
+
+                <i data-lucide="test-tube" class="header-icon"></i>
+
+                <div>
+                    <h2>Fertilizer Advisor</h2>
+                    <p>Get fertilizer recommendations</p>
+                </div>
+
+            </div>
+
+            <form id="fertilizer-form">
+
+                <div class="form-row">
+
+                    <div class="form-group">
+                        <label>Nitrogen (N)</label>
+                        <input type="number" id="fertN" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Phosphorus (P)</label>
+                        <input type="number" id="fertP" required>
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Potassium (K)</label>
+                    <input type="number" id="fertK" required>
+
+                </div>
+
+                <button
+                    type="button"
+                    class="btn btn-primary btn-block"
+                    onclick="getFertilizer()">
+
+                    Recommend Fertilizer
+
+                </button>
+
+            </form>
+
+        </div>
+
+        <div class="glass-card result-container">
+
+            <div class="result-display">
+
+                <h3>Recommended Fertilizer</h3>
+
+                <div
+                    id="fertilizerResult"
+                    style="
+                        font-size:30px;
+                        font-weight:bold;
+                        color:#16a34a;
+                        margin-top:20px;
+                    ">
+                    --
+                </div>
+
+                <p
+                    id="fertilizerReason"
+                    style="margin-top:15px;">
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- SCREEN: MARKET PRICES -->
+<section class="tab-content" id="market-tab">
+
+    <div class="page-layout-grid">
+
+        <div class="glass-card form-container">
+
+            <div class="card-header">
+
+                <i data-lucide="chart-column" class="header-icon"></i>
+
+                <div>
+                    <h2>Market Prices</h2>
+                    <p>Check crop market prices</p>
+                </div>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Select Crop</label>
+
+                <select id="marketCrop">
+
+                    <option value="rice">Rice</option>
+                    <option value="wheat">Wheat</option>
+                    <option value="maize">Maize</option>
+                    <option value="cotton">Cotton</option>
+                    <option value="sugarcane">Sugarcane</option>
+
+                </select>
+
+            </div>
+
+            <button
+                type="button"
+                class="btn btn-primary btn-block"
+                onclick="getMarketPrice()">
+
+                Check Market Price
+
+            </button>
+
+        </div>
+
+        <div class="glass-card result-container">
+
+            <div class="result-display">
+
+                <h3>Market Information</h3>
+
+                <div
+                    id="marketPrice"
+                    style="
+                        font-size:30px;
+                        font-weight:bold;
+                        color:#16a34a;
+                        margin-top:20px;
+                    ">
+                    --
+                </div>
+
+                <p id="marketTrend"></p>
+
+                <p id="marketRecommendation"></p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- SCREEN: CHATBOT -->
+<section class="tab-content" id="chatbot-tab">
+
+    <div class="page-layout-grid">
+
+        <div class="glass-card form-container">
+
+            <div class="card-header">
+                <i data-lucide="message-square" class="header-icon"></i>
+
+                <div>
+                    <h2>Farmer Chatbot</h2>
+                    <p>Ask agriculture related questions</p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <textarea
+                    id="chatMessage"
+                    rows="5"
+                    placeholder="Ask a question..."></textarea>
+            </div>
+
+            <button
+                type="button"
+                class="btn btn-primary btn-block"
+                onclick="askChatbot()">
+
+                Ask Chatbot
+
+            </button>
+
+        </div>
+
+        <div class="glass-card result-container">
+
+            <div class="result-display">
+
+                <h3>Chatbot Response</h3>
+
+                <div id="chatbotResponse">
+    Ask a question to begin.
+</div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+                <!-- SCREEN: FUTURE MODULE PLACEHOLDERS -->
+                <section class="tab-content" id="placeholder-tab">
+                    <div class="placeholder-container glass-card">
+                        <div class="coming-soon-banner">
+                            <i data-lucide="shield" id="placeholder-icon"></i>
+                            <h2 id="placeholder-title">Weather Forecasting</h2>
+                            <p class="badge-large">Phase 2 Integration Module</p>
+                        </div>
+                        
+                        <div class="mockup-content">
+                            <div class="mockup-blur">
+                                <h3>Simulated Module Dashboard</h3>
+                                <div class="mockup-grid">
+                                    <div class="mockup-item"></div>
+                                    <div class="mockup-item"></div>
+                                    <div class="mockup-item"></div>
+                                </div>
+                            </div>
+                            <div class="mockup-overlay">
+                                <i data-lucide="construction"></i>
+                                <h3>Integration Coming Soon</h3>
+                                <p>This panel is currently a conceptual mockup for final-year project validation. The backend API is scheduled for development in Phase 2.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Script JS -->
+    <script src="script.js"></script>
+</body>
+
+</html>
+
